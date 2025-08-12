@@ -5,7 +5,7 @@ console.log("02.17. 배열");
 let arrA = new Array();
 // - 배열 리터럴
 let arrB = [];
-
+// 하나의 배열에 여러 타입의 데이터를 저장할 수 있다.
 let arrC = [ 
   1, 
   2, 
