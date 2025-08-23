@@ -7,11 +7,11 @@ arr1.forEach(function(item, idx, arr) {
   console.log(idx, item * 2);
 });
 
-let arr1Doubled = [];
+let doubledArr = [];
 arr1.forEach((item) => {
-  arr1Doubled.push(item * 2);
+  doubledArr.push(item * 2);
 });
-console.log(arr1Doubled); // [2, 4, 6, 8, 10]
+console.log(doubledArr); // [2, 4, 6, 8, 10]
 
 // includes()
 // 배열에서 지정한 요소가 포함되어있는지 여부
