@@ -1,33 +1,15 @@
 import './App.css';
 import { useState } from "react";
+import Counter from "./components/Counter"
+import Bulb from "./components/Bulb";
 
 function App() {
-  const [count, setCount] = useState(1);
-  const [light, setLight] = useState("OFF");
   return (
     <>
-      <div>
-        <h1>{light}</h1>
-        <button 
-          onClick={() => {
-            setLight(light == "ON" ? "OFF" : "ON")
-          }}
-        >
-          {light == "ON" ? "끄기" : "켜기" }
-        </button>
-      </div>
-      <div>
-        <h1>{count}</h1>
-        <button 
-          onClick={() => {
-            setCount(count + 1)
-          }}
-        >
-          +
-        </button>
-      </div>
+      <Counter />
+      <Bulb />
     </>
   )
-}
+};
 
-export default App
+export default App;
