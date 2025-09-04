@@ -1,47 +1,44 @@
 import { useState } from 'react';
 
 const Register = () => {
-  const [name, setName] = useState('이름');
-  const [birth, setBirth] = useState('');
-  const [country, setCountry] = useState('');
-  const [biography, setBiography] = useState('');
 
-  const onChangeName = (e) => {
-    setName(e.target.value);
-  }
+  const [input, setInput] = useState({
+    name: '',
+    birth: '',
+    country: '',
+    biography: '',
+  });
 
-  const onChangeBirth = (e) => {
-    setBirth(e.target.value);
-  }
-
-  const onChangeCountry = (e) => {
-    setCountry(e.target.value);
-  }
-
-  const onChangeBiography = (e) => {
-    setBiography(e.target.value);
+  const onChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    })
   }
 
   return (
     <div>
       <div>
         <input 
-          value={name}
-          onChange={onChangeName} 
+          name='name'
+          value={input.name}
+          onChange={onChange} 
           placeholder={'이름'} 
         />  
       </div>
       <div>
         <input 
-          value={birth}
-          onChange={onChangeBirth}
+          name='birth'
+          value={input.birth}
+          onChange={onChange}
           type='date' 
         />
       </div>
       <div>
         <select 
-          value={country}
-          onChange={onChangeCountry}
+          name='country'
+          value={input.country}
+          onChange={onChange}
         >
           <option value=''></option>
           <option value='kr'>한국</option>
@@ -51,8 +48,9 @@ const Register = () => {
       </div>
       <div>
         <textarea 
-          value={biography} 
-          onChange={onChangeBiography}
+          name='biography'
+          value={input.biography} 
+          onChange={onChange}
         />
       </div>
     </div>
