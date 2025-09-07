@@ -23,7 +23,6 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       // 사용되지 않는 변수가 있을 때 경고, 오류 비활성화
       'no-unused-vars': 'off',
       // props에 대한 propTypes를 정의하지 않았을 때 경고 비활성화
