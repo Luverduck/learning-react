@@ -1,0 +1,24 @@
+/*
+  내부 여백 : padding
+  외부 여백 : margin
+*/
+
+/* body 요소에 스타일 부여 */
+body {
+  padding: 20px;
+}
+
+/* className이 App인 요소에 스타일 부여 */
+.App {
+  margin: 0 auto;
+  width: 400px;
+}
+
+/* className이 App인 요소 하위에 있는 section에 스타일 부여 */
+.App > section {
+  background-color: rgb(245, 245, 245);
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
