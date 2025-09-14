@@ -38,7 +38,7 @@ const List = ({ todos }) => {
         {/* todos의 각각의 요소에 대하여 TodoItem 컴포넌트 호출 */}
         {filteredTodos.map((todo) => {
           return (
-            <TodoItem {...todo}/>
+            <TodoItem key={todo.id} {...todo}/>
           );
         })}
       </div>
