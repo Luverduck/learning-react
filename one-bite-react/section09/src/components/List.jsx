@@ -2,7 +2,7 @@ import './List.css';
 import { useState } from 'react';
 import TodoItem from './TodoItem';
 
-const List = ({ todos, onUpdate }) => {
+const List = ({ todos, onUpdate, onDelete }) => {
 
   // 검색어
   const [keyword, setKeyword] = useState('');
@@ -38,7 +38,7 @@ const List = ({ todos, onUpdate }) => {
         {/* todos의 각각의 요소에 대하여 TodoItem 컴포넌트 호출 */}
         {filteredTodos.map((todo) => {
           return (
-            <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} />
+            <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} onDelete={onDelete} />
           );
         })}
       </div>

@@ -56,11 +56,19 @@ function App() {
     }));
   };
 
+  // TO-DO 리스트에서 TO-DO를 제거하는 함수
+  const onDelete = (targetId) => {
+    setTodos(todos.filter((todo) => {
+      // 삭제 대상이 아닌 요소만 필터링
+      return todo.id !== targetId; 
+    }));
+  };
+
   return (
     <div className='App'>
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   )
 }

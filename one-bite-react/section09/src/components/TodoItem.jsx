@@ -1,10 +1,15 @@
 import './TodoItem.css';
 
-const TodoItem = ({id, isDone, content, date, onUpdate}) => {
+const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 
   // 체크 박스 입력 요소의 onChange에 대한 이벤트 핸들러
   const onChangeCheckBox = () => {
     onUpdate(id)
+  };
+
+  // 삭제 버튼의 onClick에 대한 이벤트 핸들러
+  const onClickDeleteButton = () => {
+    onDelete(id);
   };
 
   return (
@@ -12,7 +17,7 @@ const TodoItem = ({id, isDone, content, date, onUpdate}) => {
       <input type='checkbox' checked={isDone} onChange={onChangeCheckBox} />
       <div className='content'>{content}</div>
       <div className='date'>{new Date(date).toLocaleDateString()}</div>
-      <button>삭제</button>
+      <button onClick={onClickDeleteButton}>삭제</button>
     </div>
   );
 };
