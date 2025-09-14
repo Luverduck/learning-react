@@ -2,12 +2,12 @@ import './List.css';
 import { useState } from 'react';
 import TodoItem from './TodoItem';
 
-const List = ({ todos }) => {
+const List = ({ todos, onUpdate }) => {
 
   // 검색어
   const [keyword, setKeyword] = useState('');
 
-  // 입력 요소의 onChange에 대한 이벤트 핸들러
+  // 검색창 입력 요소의 onChange에 대한 이벤트 핸들러
   const onChangeKeyword = (e) => {
     setKeyword(e.target.value);
   };
@@ -38,7 +38,7 @@ const List = ({ todos }) => {
         {/* todos의 각각의 요소에 대하여 TodoItem 컴포넌트 호출 */}
         {filteredTodos.map((todo) => {
           return (
-            <TodoItem key={todo.id} {...todo}/>
+            <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} />
           );
         })}
       </div>
