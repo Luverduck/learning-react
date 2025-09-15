@@ -1,9 +1,8 @@
 import './App.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useReducer } from 'react';
 import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
-import Exam from './components/Exam';
 
 const mockData = [
   {
@@ -26,47 +25,66 @@ const mockData = [
   },
 ];
 
+// 상태 변화 함수
+function reducer(state, action) {
+  switch (action.type) {
+    // TO-DO 리스트에 새로운 TO-DO 추가
+    case 'CREATE':
+      return [action.data, ...state];
+    // TO-DO 리스트에서 targetId에 해당하는 TO-DO의 체크 상태 토글
+    case 'UPDATE':
+      return state.map((item) => {
+        return item.id === action.targetId ? { ...item, isDone: !item.isDone } : item
+      });
+    // TO-DO 리스트에서 targetId에 해당하는 TO-DO 필터링
+    case 'DELETE':
+      return state.filter((item) => {
+        return item.id !== action.targetId
+      });
+    default: return state;
+  }
+};
+
 function App() {
 
-  const [todos, setTodos] = useState(mockData);
+  // useReducer를 통해 상태 변수 선언
+  const [todos, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(0);
 
+  // 새로운 TO-DO를 추가하는 함수
   const onCreate = (content) => {
-    const newTodo = {
-      id: idRef.current++,
-      isDone: false,
-      content: content,
-      date: new Date().getTime(),
-    }
-    setTodos([newTodo, ...todos]);
-  };
-
-  const onUpdate = (targetId) => {
-    setTodos(todos.map((todo) => {
-      if (todo.id === targetId) {
-        return {
-          ...todo,
-          isDone: !todo.isDone,
-        }
+    dispatch({
+      type: 'CREATE',
+      data: {
+        id: idRef.current++,
+        isDone: false,
+        content: content,
+        date: new Date().getTime(),
       }
-      return todo;
-    }));
+    });
   };
 
+  // TO-DO의 체크 상태를 변경하는 함수
+  const onUpdate = (targetId) => {
+    dispatch({
+      type: 'UPDATE',
+      targetId: targetId,
+    });
+  };
+
+  // TO-DO 리스트에서 TO-DO를 제거하는 함수
   const onDelete = (targetId) => {
-    setTodos(todos.filter((todo) => {
-      return todo.id !== targetId;
-    }));
+    dispatch({
+      type: 'DELETE',
+      targetId: targetId,
+    });
   };
 
   return (
     <div className='App'>
-      <Exam />
-      {/*
       <Header />
       <Editor onCreate={onCreate} />
       <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
-      */}
     </div>
   )
 }
