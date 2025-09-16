@@ -1,4 +1,5 @@
 import './TodoItem.css';
+import { memo } from 'react';
 
 const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 
@@ -20,4 +21,15 @@ const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
   );
 };
 
-export default TodoItem;
+// export default TodoItem;
+
+// TodoItem 컴포넌트가 메모이징된 컴포넌트 내보내기
+export default memo(TodoItem, (prevProps, nextProps) => {
+  // true => props 변경 X=> 리렌더링 X
+  // false => props 변경 O => 리렌더링 O
+  if(prevProps.id !== nextProps.id) return false;
+  if(prevProps.isDone !== nextProps.isDone) return false;
+  if(prevProps.content !== nextProps.content) return false;
+  if(prevProps.date !== nextProps.date) return false;
+  return true;
+});
