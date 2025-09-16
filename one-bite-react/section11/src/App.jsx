@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useRef, useReducer } from 'react';
+import { useRef, useReducer } from 'react';
 import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
@@ -44,7 +44,7 @@ function reducer(state, action) {
 function App() {
 
   const [todos, dispatch] = useReducer(reducer, mockData);
-  const idRef = useRef(0);
+  const idRef = useRef(3);
 
   const onCreate = (content) => {
     dispatch({
