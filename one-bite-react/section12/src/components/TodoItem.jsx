@@ -1,10 +1,14 @@
 import './TodoItem.css';
-import { memo } from 'react';
+import { memo, useContext } from 'react';
+import { TodoContext } from '../App';
 
-const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
+const TodoItem = ({ id, isDone, content, date }) => {
+
+  // TodoContext에서 onUpdate, onDelete 함수 반환
+  const { onUpdate, onDelete } = useContext(TodoContext);
 
   const onChangeCheckBox = () => {
-    onUpdate(id)
+    onUpdate(id);
   };
 
   const onClickDeleteButton = () => {

@@ -1,5 +1,5 @@
 import './App.css';
-import { useRef, useReducer, useCallback } from 'react';
+import { useRef, useReducer, useCallback, createContext } from 'react';
 import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
@@ -41,6 +41,9 @@ function reducer(state, action) {
   }
 };
 
+// Context 생성 및 내보내기
+export const TodoContext = createContext();
+
 function App() {
 
   const [todos, dispatch] = useReducer(reducer, mockData);
@@ -75,8 +78,11 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      {/* Context의 Provider에 하위 컴포넌트에서 사용할 데이터 전달 */}
+      <TodoContext.Provider value={{ todos, onCreate, onUpdate, onDelete }}>
+        <Editor />
+        <List />
+      </TodoContext.Provider>
     </div>
   )
 }

@@ -1,10 +1,13 @@
 import './Editor.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import { TodoContext } from '../App';
 
-const Editor = ({ onCreate }) => {
+const Editor = () => {
 
   const [content, setContent] = useState("");
   const contentRef = useRef();
+  // TodoContext에서 onCreate 함수 반환
+  const { onCreate } = useContext(TodoContext);
 
   const onChangeContent = (e) => {
     setContent(e.target.value);

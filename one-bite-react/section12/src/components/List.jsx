@@ -1,10 +1,13 @@
 import './List.css';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useContext } from 'react';
 import TodoItem from './TodoItem';
+import { TodoContext } from '../App';
 
-const List = ({ todos, onUpdate, onDelete }) => {
+const List = () => {
 
   const [keyword, setKeyword] = useState('');
+  // TodoContext에서 todos 반환
+  const { todos } = useContext(TodoContext);
 
   const onChangeKeyword = (e) => {
     setKeyword(e.target.value);
@@ -49,7 +52,7 @@ const List = ({ todos, onUpdate, onDelete }) => {
       <div className='todos_wrapper'>
         {filteredTodos.map((todo) => {
           return (
-            <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} onDelete={onDelete} />
+            <TodoItem key={todo.id} {...todo} />
           );
         })}
       </div>
