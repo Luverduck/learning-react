@@ -22,7 +22,7 @@ const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 };
 
 // export default TodoItem;
-
+/*
 // TodoItem 컴포넌트가 메모이징된 컴포넌트 내보내기
 export default memo(TodoItem, (prevProps, nextProps) => {
   // true => props 변경 X=> 리렌더링 X
@@ -33,3 +33,7 @@ export default memo(TodoItem, (prevProps, nextProps) => {
   if(prevProps.date !== nextProps.date) return false;
   return true;
 });
+*/
+
+// TodoItem 컴포넌트가 메모이징된 컴포넌트 내보내기 (사용자 정의 비교 함수 제거)
+export default memo(TodoItem);
