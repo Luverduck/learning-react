@@ -1,13 +1,13 @@
 import './List.css';
 import { useState, useMemo, useContext } from 'react';
 import TodoItem from './TodoItem';
-import { TodoContext } from '../App';
+import { TodoStateContext } from '../App';
 
 const List = () => {
 
   const [keyword, setKeyword] = useState('');
-  // TodoContext에서 todos 반환
-  const { todos } = useContext(TodoContext);
+  // TodoStateContext에서 todos 반환
+  const todos = useContext(TodoStateContext);
 
   const onChangeKeyword = (e) => {
     setKeyword(e.target.value);

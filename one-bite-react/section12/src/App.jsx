@@ -1,5 +1,5 @@
 import './App.css';
-import { useRef, useReducer, useCallback, createContext } from 'react';
+import { useRef, useReducer, useCallback, createContext, useMemo } from 'react';
 import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
@@ -41,8 +41,9 @@ function reducer(state, action) {
   }
 };
 
-// Context 생성 및 내보내기
-export const TodoContext = createContext();
+// Context 생성 및 내보내기 (Context 분리)
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 
 function App() {
 
@@ -75,14 +76,21 @@ function App() {
     });
   }, []);
 
+  // onCreate, onUpdate, onDelete 함수에 useMemo 적용
+  const memoizedDispatch = useMemo(() => {
+    return { onCreate, onUpdate, onDelete }
+  }, []);
+
   return (
     <div className='App'>
       <Header />
       {/* Context의 Provider에 하위 컴포넌트에서 사용할 데이터 전달 */}
-      <TodoContext.Provider value={{ todos, onCreate, onUpdate, onDelete }}>
-        <Editor />
-        <List />
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={memoizedDispatch}>
+          <Editor />
+          <List />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   )
 }
