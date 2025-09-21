@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Diary from './pages/Diary';
 import New from './pages/New';
 import Notfound from './pages/NotFound';
+import Button from './components/Button';
+import Header from './components/Header';
 
 // assets 폴더의 이미지 불러오기
 import getEmotionImage from './util/get-emotion-image';
@@ -12,7 +14,7 @@ function App() {
 
   // 페이지 이동 함수 반환
   const nav = useNavigate();
-  
+
   // onClick 이벤트에 대한 이벤트 핸들러 정의
   const onClickButton = () => {
     nav('/new');
@@ -20,21 +22,28 @@ function App() {
 
   return (
     <>
-      <div>
-        {/* assets 폴더에서 불러온 이미지 렌더링 */}
-        <img src={getEmotionImage(1)} />
-        <img src={getEmotionImage(2)} />
-        <img src={getEmotionImage(3)} />
-        <img src={getEmotionImage(4)} />
-        <img src={getEmotionImage(5)} />
-      </div>
-      <div>
-        {/* Link 컴포넌트 정의 */}
-        <Link to={'/'}>Home</Link>
-        <Link to={'/new'}>New</Link>
-        <Link to={'/diary'}>Diary</Link>
-      </div>
-      <button onClick={onClickButton}>New 페이지로 이동</button>
+      {/* Header 컴포넌트 렌더링 */}
+      <Header
+        title={'Header'}
+        leftChild={<Button text={'Left'} />}
+        rightChild={<Button text={'Right'} />}
+      />
+      {/* Button 컴포넌트 렌더링 */}
+      <Button
+        text={'일반'}
+        onClick={() => { console.log("일반버튼 클릭") }}
+      />
+      <Button
+        text={'긍정'}
+        type={'POSITIVE'}
+        onClick={() => { console.log("긍정버튼 클릭") }}
+      />
+      <Button
+        text={'부정'}
+        type={'NEGATIVE'}
+        onClick={() => { console.log("부정버튼 클릭") }}
+      />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
