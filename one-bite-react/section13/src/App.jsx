@@ -27,11 +27,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
-        <Route path="/diary" element={<Diary />} />
+        <Route path="/diary/:id/:pw" element={<Diary />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
   )
 }
 
-export default App
+export default App;
