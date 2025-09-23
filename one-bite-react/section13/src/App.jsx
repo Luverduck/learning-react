@@ -31,7 +31,7 @@ function reducer(state, action) {
 function App() {
 
   // useReducer를 통해 일기 리스트를 State로 정의
-  const [data, dispach] = useReducer(reducer, mockData);
+  const [data, dispatch] = useReducer(reducer, mockData);
 
   return (
     <>
