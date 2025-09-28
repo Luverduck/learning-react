@@ -10,16 +10,22 @@ import Notfound from './pages/NotFound';
 // 초기 데이터
 const mockData = [
   {
-    id: 1, 
-    createDate: new Date().getTime(), 
-    emotionId: 1, 
+    id: 1,
+    createdDate: new Date('2025-09-28').getTime(),
+    emotionId: 1,
     content: '1번 일기 내용',
   },
   {
-    id: 2, 
-    createDate: new Date().getTime(), 
-    emotionId: 2, 
+    id: 2,
+    createdDate: new Date('2025-09-27').getTime(),
+    emotionId: 2,
     content: '2번 일기 내용',
+  },
+  {
+    id: 3,
+    createdDate: new Date('2025-08-15').getTime(),
+    emotionId: 3,
+    content: '3번 일기 내용',
   },
 ]
 
@@ -38,10 +44,10 @@ function reducer(state, action) {
 };
 
 // 일기 데이터 접근을 위한 Context
-const DiaryStateContext = createContext();
+export const DiaryStateContext = createContext();
 
 // 일기 데이터 관리 함수 접근을 위한 Context
-const DiaryDispatchContext = createContext();
+export const DiaryDispatchContext = createContext();
 
 function App() {
 
@@ -51,12 +57,12 @@ function App() {
   const idRef = useRef(3);
 
   // 일기 추가
-  const onCreate = (createDate, emotionId, content) => {
+  const onCreate = (createdDate, emotionId, content) => {
     dispatch({
       type: 'CREATE',
       data: {
         id: idRef.current++,
-        createDate,
+        createdDate,
         emotionId,
         content,
       }
@@ -64,12 +70,12 @@ function App() {
   };
 
   // 일기 수정
-  const onUpdate = (id, createDate, emotionId, content) => {
+  const onUpdate = (id, createdDate, emotionId, content) => {
     dispatch({
       type: 'UPDATE',
       data: {
         id, 
-        createDate, 
+        createdDate, 
         emotionId, 
         content,
       },
