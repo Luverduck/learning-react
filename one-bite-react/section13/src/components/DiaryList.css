@@ -1,0 +1,21 @@
+/* 일기 리스트 메뉴바 - 공통 */
+.DiaryList .menu_bar {
+  margin: 20px 0px;
+  display: flex;
+  gap: 10px;
+}
+
+/* 일기 리스트 메뉴바 - 정렬 버튼 */
+.DiaryList .menu_bar select {
+  background-color: rgb(236, 236, 236);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* 일기 리스트 메뉴바 - 새 일기 버튼 */
+.DiaryList .menu_bar button {
+  flex: 1;
+}
