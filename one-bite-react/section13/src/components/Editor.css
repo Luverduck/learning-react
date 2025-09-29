@@ -1,0 +1,42 @@
+/* 공통 */
+.Editor > section {
+  margin-bottom: 40px;
+}
+
+/* 오늘의 날짜 - 제목 */
+.Editor > section > h4 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* 오늘의 날짜 - 날짜 입력 요소 */
+/* 오늘의 일기 - 내용 입력 요소 */
+.Editor > section > input {
+  background-color: rgb(236, 236, 236);
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+/* 오늘의 감정 - 감정 이미지 리스트 */
+.Editor .emotion_section .emotion_list_wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 2%;
+}
+
+/* 오늘의 일기 - 내용 입력 요소 */
+.Editor > section > textarea {
+  padding: 20px;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+/* 버튼 */
+.Button .button_section {
+  display: flex;
+  justify-content: space-between;
+}
