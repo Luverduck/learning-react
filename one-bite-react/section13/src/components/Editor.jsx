@@ -26,9 +26,7 @@ const Editor = () => {
       <section className='emotion_section'>
         <h4>오늘의 감정</h4>
         <div className='emotion_list_wrapper'>
-          {emotionList.map((item) => {
-            <EmotionItem key={item.emotionId} {...item} isSelected={item.emotionId === emotionId} />
-          })}
+          {emotionList.map((item) => <EmotionItem key={item.emotionId} {...item} isSelected={item.emotionId === emotionId} />)}
         </div>
       </section>
       {/** 오늘의 일기 영역 */}
