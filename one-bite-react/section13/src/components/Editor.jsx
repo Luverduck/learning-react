@@ -1,6 +1,6 @@
 import './Editor.css';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import EmotionItem from './EmotionItem';
@@ -26,7 +26,7 @@ const getStringedDate = (targetDate) => {
   return `${year}-${month}-${date}`;
 }
 
-const Editor = ({ onSubmit }) => {
+const Editor = ({ initData, onSubmit }) => {
 
   // useState를 통해 사용자 입력을 State로 정의
   const [input, setInput] = useState({
@@ -57,6 +57,16 @@ const Editor = ({ onSubmit }) => {
 
   // useNavigate를 통해 navigate 함수 반환
   const nav = useNavigate();
+
+  // useEffect를 통해 마운트 후 수정할 일기 데이터를 사용자 입력으로 설정
+  useEffect(() => {
+    if(initData) {
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate)),
+      })
+    }
+  }, [initData]);
 
   return (
     <div className='Editor'>
