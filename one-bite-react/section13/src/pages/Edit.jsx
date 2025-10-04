@@ -8,15 +8,19 @@ import Button from '../components/Button';
 import Editor from '../components/Editor';
 
 import useDiary from '../hooks/useDiary';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Edit = () => {
 
   // 동적 경로에 포함된 요청 매개변수 반환
   const params = useParams();
-  
+
+  // 컴포넌트 호출 시 페이지 타이틀 변경
+  usePageTitle(`${params.id}번 일기 수정`);
+
   // useNavigate를 통해 navigate 함수 반환
   const nav = useNavigate();
-  
+
   // DiaryDispatchContext의 Provider에 전달된 onDelete, onUpdate 함수 반환
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
 
@@ -33,14 +37,14 @@ const Edit = () => {
 
   // 작성 완료 버튼의 onClick 이벤트에 대한 이벤트 핸들러
   const onSubmit = (input) => {
-    if(window.confirm('일기를 정말 수정할까요?')) {
+    if (window.confirm('일기를 정말 수정할까요?')) {
       onUpdate(
-        params.id, 
-        input.createdDate.getTime(), 
-        input.emotionId, 
+        params.id,
+        input.createdDate.getTime(),
+        input.emotionId,
         input.content,
       );
-      nav('/', { replace:true });
+      nav('/', { replace: true });
     }
   };
 
